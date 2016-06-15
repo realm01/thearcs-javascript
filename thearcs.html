@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<style>
+			body {
+				background-color:grey;
+				font-family:'calibri', Garamond, 'sans-serif';
+			}
+			table.tablepreferences {
+				border-style:solid;
+				border-color:#0B5FA5;
+				display:inline-block;
+			}
+			td.tabletitle {
+				border-style:solid;
+				border-color:#0B5FA5;
+				background-color:#0B5FA5;
+				color:#FF9400;
+				font-weight:bold;
+			}
+			td.tabletext {
+				color:white;
+				line-height:0px;
+				text-align:left;
+			}
+			canvas#canvas {
+				width:1290px;
+				height:720px;
+				border-style:solid;
+				border-width:4px;
+				border-color:#0B5FA5;
+			}
+			div.main {
+				max-width:4000px;
+				min-width:1298px;
+				margin-right:auto;
+				margin-left:auto;
+			}
+			div.title {
+				color:#FF9400;
+				font-variant:small-caps;
+				text-align:center;
+				background-color:#0B5FA5;
+			}
+			div.divcanvas {
+				text-align:center;
+			}
+			div.divtable {
+				text-align:center;
+			}
+			span.preferencesreset {
+				font-size:0.8em;
+				font-weight:normal;
+				/* cursor:url(images/cursorreset.gif), default; */
+				cursor: pointer;
+			}
+			span#accuratecollision, #inaccuratecollision {
+				font-weight:bold;
+				background-color:#0B5FA5;
+				color:#FF9400;
+				/* cursor:url(images/cursorchange.gif), default; */
+				cursor: pointer;
+			}
+			input {
+				max-width:4em
+			}
+			p.preset {
+				/* cursor:url(images/cursorreset.gif), default; */
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<div class="title">
+				<h1>The Arcs</h1>
+			</div>
+			<div class="divcanvas">
+				<canvas id="canvas" width="1290", height="720">
+					Please activate JavaScript to use this content. Or your Browser doesn't support canvas.
+				</canvas>
+			</div>
+			<br>
+			<br>
+			<div class="divtable">
+				<table class="tablepreferences">
+					<tr>
+						<td colspan="2", class="tabletitle">
+							<p>Motion Blur <span class="preferencesreset" onClick="PreferencesReset(new Array('usemotionblur', 'motionbluramount'), new Array('true', '4'))">[reset]</span></p>
+						</td>
+						<td colspan="2" class="tabletitle">
+							<p>Gravitation <span class="preferencesreset" onClick="PreferencesReset(new Array('manualgravitationinputcheckbox', 'manualgraviationinput', 'gravitationx', 'gravitationy'), new Array('false', 'reset', '0', '0'))">[reset]</span></p>
+						</td>
+						<td colspan="2", class="tabletitle">
+							<p>Friction <span class="preferencesreset" onClick="PreferencesReset(new Array('friction'), new Array('1'))">[reset]</span></p>
+						</td>
+						<td colspan="2", class="tabletitle">
+							<p>Bounce <span class="preferencesreset" onClick="PreferencesReset(new Array('minbounce', 'maxbounce'), new Array('0.8', '0.99'))">[reset]</span></p>
+						</td>
+						<td colspan="2" class="tabletitle">
+							<p>Radius <span class="preferencesreset" onClick="PreferencesReset(new Array('minradius', 'maxradius'), new Array('4', '80'))">[reset]</span></p>
+						</td>
+						<td colspan="4" class="tabletitle">
+							<p>Speed <span class="preferencesreset" onClick="PreferencesReset(new Array('minspeedx', 'maxspeedx', 'minspeedy', 'maxspeedy'), new Array('-20', '20', '-20', '20'))">[reset]</span></p>
+						</td>
+						<td colspan="2" class="tabletitle">
+							<p>Collision Detection <span class="preferencesreset" onClick="PreferencesReset(new Array('arcdetectionaccuracy', 'inaccuratecollision'), new Array('0', 'inaccuratecollision'))">[reset]</span></p>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" class="tabletext">
+							<p><input id="usemotionblur" type="checkbox" checked="true"> Use Motion Blur</p>
+						</td>
+
+						<td id="manualgravitationinputx0" class="tabletext" style="display:none;">
+							<p>X - Axis</p>
+						</td>
+						<td id="manualgravitationinputx1" class="tabletext" style="display:none;">
+							<p><input id="gravitationx" type="number" step="0.1" value="0"></p>
+						</td>
+
+						<td colspan="2" id="cursorgravitationinput" class="tabletext" style="">
+							<p><input id="manualgravitationinputcheckbox" type="checkbox"> Set Gravity Manually</p>
+						</td>
+
+						<td class="tabletext">
+							<p>Friction</p>
+						</td>
+						<td class="tabletext">
+							<p><input id="friction" type="number" step="0.01" value="1"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>Min</p>
+							</td>
+						<td class="tabletext">
+							<p><input id="minbounce" type="number" step="0.1" min="0" value="0.8"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>Min</p>
+						</td>
+						<td class="tabletext">
+							<p><input id="minradius" type="number" step="1" min="1" value="4"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>{X - Axis} Min</p>
+						</td>
+						<td class="tabletext">
+							<p><input id="minspeedx" type="number" step="1" value="-20"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>Max</p>
+						</td>
+
+						<td class="tabletext">
+							<p><input id="maxspeedx" type="number" step="1" value="20"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>Tolerance</p>
+						</td>
+						<td class="tabletext">
+							<p><input id="arcdetectionaccuracy" type="number" step="1" min="0" value="0"></p>
+						</td>
+					</tr>
+					<tr>
+						<td class="tabletext">
+							<p>Motion Blur Amount</p>
+						</td>
+						<td class="tabletext">
+							<p><input id="motionbluramount" type="number" step="1" min="1" value="4"></p>
+						</td>
+
+						<td id="manualgravitationinputy0" class="tabletext" style="visibility:hidden;">
+							<p>Y - Axis</p>
+						</td>
+						<td id="manualgravitationinputy1" class="tabletext" style="visibility:hidden;">
+							<p><input id="gravitationy" type="number" step="0.1" value="0"></p>
+						</td>
+
+						<td colspan="2" class="tabletext">
+						</td>
+
+						<td class="tabletext">
+							<p>Max</p>
+						</td>
+						<td class="tabletext">
+							<p><input id="maxbounce" type="number" step="0.1" min="0" value="0.99"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>Max</p>
+						</td>
+						<td class="tabletext">
+							<p><input id="maxradius" type="number" step="1" min="1" value="80"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>{Y - Axis} Min</p>
+						</td>
+						<td class="tabletext">
+							<p><input id="minspeedy" type="number" step="1" value="-20"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>Max</p>
+						</td>
+
+						<td class="tabletext">
+							<p><input id="maxspeedy" type="number" step="1" value="20"></p>
+						</td>
+
+						<td class="tabletext">
+							<p>Inaccurate Collision</p>
+						</td>
+						<td class="tabletext">
+							<p><span id="accuratecollision" style="" onClick="ChangeCollisionMode(1)">[inactive]</span><span id="inaccuratecollision" style="display:none;" onClick="ChangeCollisionMode(0)">[active]</span></p>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="divtable">
+				<table class="tablepreferences">
+					<tr>
+						<td class="tabletitle">
+							<p class="preset" onClick="AllReset(1, 0)">Clear Arcs</p>
+						</td>
+						<td class="tabletitle">
+							<p class="preset" onClick="AllReset(0, 1)">Clear Preferences</p>
+						</td>
+						<td class="tabletitle">
+							<p class="preset" onClick="AllReset(1, 1)">Clear All</p>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div style="display:none">
+			<!-- <img id="arcsbackgroundimage" src="images/arcsbackground2.jpg"></img> -->
+		</div>
+		<script src="arcsengine.js"></script>
+		<script src="userinterface.js"></script>
+	</body>
+</html>
